@@ -4,10 +4,32 @@ import numpy as np
 import plotly as plt
 import plotly.graph_objects as go
 import datetime
-import locale
+import calendar
+
+def get_num_days_in_month(year, month):
+    # monthrange() returns a tuple (weekday of the first day of the month, number of days in the month)
+    _, num_days = calendar.monthrange(year, month)
+    return num_days
+
+spanish_month_names = {
+    1: 'enero',
+    2: 'febrero',
+    3: 'marzo',
+    4: 'abril',
+    5: 'mayo',
+    6: 'junio',
+    7: 'julio',
+    8: 'agosto',
+    9: 'septiembre',
+    10: 'octubre',
+    11: 'noviembre',
+    12: 'diciembre'
+}
 
 
-locale.setlocale(locale.LC_TIME, 'es_ES')
+
+
+
 
 df_raw = pd.read_excel('raw_data.xlsx')
 
@@ -18,7 +40,22 @@ df = df.sort_values('fecha')
 default_date = min(df.fecha)
 
 st.sidebar.title('Parámetros de Busqueda')
-sel_Date = st.sidebar.date_input(label = 'Seleccionar fecha:', value = default_date, min_value = min(df.fecha), max_value = max(df.fecha))
+sel_option = st.sidebar.selectbox(
+    'Seleccione el mes y año:',
+    ('7 - 2020', '8 - 2020', '9 - 2020', '10 - 2020', '11 - 2020', '12 - 2020', '1 - 2021', '2 - 2021', '3 - 2021', '4 - 2021', '5 - 2021', '6 - 2021'))
+
+sel_month = int(sel_option.split(' - ')[0])
+sel_year = int(sel_option.split(' - ')[1])
+sel_day_range = get_num_days_in_month(sel_year, sel_month)
+
+sel_day = st.sidebar.selectbox(
+    'Seleccione el día:',
+    tuple(range(1, sel_day_range + 1))
+)
+
+sel_Date = datetime.date(year = sel_year, month = sel_month, day = sel_day)
+
+
 sel_fDate = sel_Date + datetime.timedelta(days = 1)
 dia = sel_Date.strftime('%Y-%m-%d')
 diaf = sel_fDate.strftime('%Y-%m-%d')
@@ -28,10 +65,16 @@ sel_df = df[(df['fecha'] >= dia) & (df['fecha'] < diaf)]
 st.header('Datos Meteorológicos y Calidad del Aire en Lima')
 
 if len(sel_df) == 0:
-    st.subheader(sel_Date.strftime('%d de %B de %Y'))
+    st.subheader(sel_Date.strftime("%d de %B de %Y").replace(
+    sel_Date.strftime("%B"), spanish_month_names[int(sel_Date.strftime("%m"))])
+    )
+
     st.caption('No se encontraron datos en la fecha seleccionada. Por favor intente otra fecha.')
 else:
-    st.subheader(sel_Date.strftime('%d de %B de %Y'))
+    st.subheader(sel_Date.strftime("%d de %B de %Y").replace(
+    sel_Date.strftime("%B"), spanish_month_names[int(sel_Date.strftime("%m"))])
+    )
+
     tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs(["Punto de Recolección","Temperatura", "Presión", "Humedad", "UV", "Ruido", "Gases", "Material Particulado"])
     # Grafico 1
     layout = go.Layout(
