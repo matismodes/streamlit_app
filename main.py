@@ -28,9 +28,6 @@ spanish_month_names = {
 
 
 
-
-
-
 df_raw = pd.read_excel('raw_data.xlsx')
 
 df = df_raw.copy()
@@ -39,8 +36,12 @@ df = df.sort_values('fecha')
 
 default_date = min(df.fecha)
 
-st.sidebar.title('Parámetros de Busqueda')
-sel_option = st.sidebar.selectbox(
+st.header('Datos Meteorológicos y Calidad del Aire en Lima')
+st.subheader('Parámetros de Busqueda')
+
+col1, col2 = st.columns(2)
+
+sel_option = col1.selectbox(
     'Seleccione el mes y año:',
     ('7 - 2020', '8 - 2020', '9 - 2020', '10 - 2020', '11 - 2020', '12 - 2020', '1 - 2021', '2 - 2021', '3 - 2021', '4 - 2021', '5 - 2021', '6 - 2021'))
 
@@ -48,7 +49,7 @@ sel_month = int(sel_option.split(' - ')[0])
 sel_year = int(sel_option.split(' - ')[1])
 sel_day_range = get_num_days_in_month(sel_year, sel_month)
 
-sel_day = st.sidebar.selectbox(
+sel_day = col2.selectbox(
     'Seleccione el día:',
     tuple(range(1, sel_day_range + 1))
 )
@@ -62,7 +63,7 @@ diaf = sel_fDate.strftime('%Y-%m-%d')
 
 sel_df = df[(df['fecha'] >= dia) & (df['fecha'] < diaf)]
 
-st.header('Datos Meteorológicos y Calidad del Aire en Lima')
+
 
 if len(sel_df) == 0:
     st.subheader(sel_Date.strftime("%d de %B de %Y").replace(
@@ -225,7 +226,7 @@ else:
     # Grafico 6 - Humedad
     layout = go.Layout(
         title='Humedad a lo largo del día',
-        yaxis=dict(title="humedad(%)"),
+        yaxis=dict(title="Humedad (%)"),
         xaxis=dict(title='Hora')
     )
     fig6 = go.Figure(layout = layout)
@@ -237,13 +238,13 @@ else:
 
     # Grafico 7 - uv
     layout = go.Layout(
-        title='Radiación uv a lo largo del día',
-        yaxis=dict(title="uv"),
+        title='Radiación UV a lo largo del día',
+        yaxis=dict(title="UV"),
         xaxis=dict(title='Hora')
     )
     fig7 = go.Figure(layout = layout)
     fig7.add_trace(go.Scatter(x=sel_df['fecha'], y=sel_df['uv'],\
-                            mode='lines', name='uv',
+                            mode='lines', name='UV',
                             line = dict(color = 'magenta')))
     fig7.update_layout(template='plotly_white')
 
@@ -251,7 +252,7 @@ else:
     # Grafico 8 - Ruido
     layout = go.Layout(
         title='Ruido a lo largo del día',
-        yaxis=dict(title="ruido(db)"),
+        yaxis=dict(title="Ruido (dB)"),
         xaxis=dict(title='Hora')
     )
     fig8 = go.Figure(layout = layout)
