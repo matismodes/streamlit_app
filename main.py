@@ -87,52 +87,52 @@ else:
     fig1 = go.Figure(layout = layout)
     fig1.add_trace(go.Scatter(x=sel_df['fecha'], y=sel_df['h2s(ug/m3)'],\
                             mode='lines', name='H2S',
-                            line = dict(color = 'red')))
+                            line = dict(color = '#FF8D70')))
 
     fig1.add_trace(go.Scatter(
         x=[min(sel_df['fecha']), max(sel_df['fecha'])],
-        y=[50, 50],
+        y=[150, 150],
         mode='lines',
-        line=dict(color="red", dash="dash"),
-        name='Límite H2S'
+        line=dict(color="#FF8D70", dash="dash"),
+        name='Límite de H2S en promedio de 24 horas'
     ))
 
     fig1.add_trace(go.Scatter(x=sel_df['fecha'], y=sel_df['no2(ug/m3)'],\
                             mode='lines', name='NO2',
-                            line = dict(color = 'blue')))
+                            line = dict(color = '#1245BA')))
 
     fig1.add_trace(go.Scatter(
         x=[min(sel_df['fecha']), max(sel_df['fecha'])],
-        y=[40, 40],
+        y=[25, 25],
         mode='lines',
-        line=dict(color="blue", dash="dash"),
-        name='Límite NO2'
+        line=dict(color="#1245BA", dash="dash"),
+        name='Límite de NO2 en promedio de 24 horas'
     ))
 
 
     fig1.add_trace(go.Scatter(x=sel_df['fecha'], y=sel_df['o3(ug/m3)'],\
                             mode='lines', name='O3',
-                            line = dict(color = 'green')))
+                            line = dict(color = '#04D5F1')))
 
     fig1.add_trace(go.Scatter(
         x=[min(sel_df['fecha']), max(sel_df['fecha'])],
-        y=[120, 120],
+        y=[100, 100],
         mode='lines',
-        line=dict(color="green", dash="dash"),
-        name='Límite O3'
+        line=dict(color="#04D5F1", dash="dash"),
+        name='Límite de O3 en promedio de 8 horas'
     ))
 
 
     fig1.add_trace(go.Scatter(x=sel_df['fecha'], y=sel_df['so2(ug/m3)'],\
                             mode='lines', name='SO2',
-                            line = dict(color = 'orange')))
+                            line = dict(color = '#A1FC22')))
 
     fig1.add_trace(go.Scatter(
         x=[min(sel_df['fecha']), max(sel_df['fecha'])],
-        y=[125, 125],
+        y=[40, 40],
         mode='lines',
-        line=dict(color="orange", dash="dash"),
-        name='Límite SO2'
+        line=dict(color="#A1FC22", dash="dash"),
+        name='Límite de SO2 en promedio de 24 horas'
     ))
 
 
@@ -147,14 +147,14 @@ else:
     fig2 = go.Figure(layout = layout)
     fig2.add_trace(go.Scatter(x=sel_df['fecha'], y=sel_df['co(ug/m3)'],\
                             mode='lines', name='CO',
-                            line = dict(color = 'purple')))
+                            line = dict(color = '#6457A6')))
 
     fig2.add_trace(go.Scatter(
         x=[min(sel_df['fecha']), max(sel_df['fecha'])],
-        y=[10000, 10000],
+        y=[4000, 4000],
         mode='lines',
-        line=dict(color="purple", dash="dash"),
-        name='Límite Aceptable'
+        line=dict(color="#6457A6", dash="dash"),
+        name='Límite de CO en promedio de 24 horas'
     ))
 
     fig2.update_layout(template='plotly_white')
@@ -172,26 +172,26 @@ else:
     fig3 = go.Figure(layout = layout)
     fig3.add_trace(go.Scatter(x=sel_df['fecha'], y=sel_df['pm10(ug/m3)'],\
                             mode='lines', name='PM10',
-                            line = dict(color = 'black')))
+                            line = dict(color = '#5A9367')))
 
     fig3.add_trace(go.Scatter(
         x=[min(sel_df['fecha']), max(sel_df['fecha'])],
-        y=[40, 40],
+        y=[45, 45],
         mode='lines',
-        line=dict(color="black", dash="dash"),
-        name='Límite Aceptable'
+        line=dict(color="#5A9367", dash="dash"),
+        name='Límite de PM10 en promedio de 24 horas'
     ))
 
     fig3.add_trace(go.Scatter(x=sel_df['fecha'], y=sel_df['pm2.5(ug/m3)'],\
                             mode='lines', name='PM2.5',
-                            line = dict(color = 'grey')))
+                            line = dict(color = '#A6C36F')))
 
     fig3.add_trace(go.Scatter(
         x=[min(sel_df['fecha']), max(sel_df['fecha'])],
-        y=[20, 20],
+        y=[15, 15],
         mode='lines',
-        line=dict(color="grey", dash="dash"),
-        name='Límite Aceptable'
+        line=dict(color="#A6C36F", dash="dash"),
+        name='Límite de PM2.5 en promedio de 24 horas'
     ))
 
     fig3.update_layout(template='plotly_white')
@@ -207,7 +207,7 @@ else:
     fig4 = go.Figure(layout = layout)
     fig4.add_trace(go.Scatter(x=sel_df['fecha'], y=sel_df['temperatura(c)'],\
                             mode='lines', name='Temperatura',
-                            line = dict(color = 'orange')))
+                            line = dict(color = '#FF4A1C')))
     fig4.update_layout(template='plotly_white')
 
     # Grafico 5 - Presión
@@ -219,7 +219,7 @@ else:
     fig5 = go.Figure(layout = layout)
     fig5.add_trace(go.Scatter(x=sel_df['fecha'], y=sel_df['presion(pa)'],\
                             mode='lines', name='Presión',
-                            line = dict(color = 'blue')))
+                            line = dict(color = '#1245BA')))
     fig5.update_layout(template='plotly_white')
 
 
@@ -232,7 +232,7 @@ else:
     fig6 = go.Figure(layout = layout)
     fig6.add_trace(go.Scatter(x=sel_df['fecha'], y=sel_df['humedad(%)'],\
                             mode='lines', name='Humedad',
-                            line = dict(color = 'cyan')))
+                            line = dict(color = '#04D5F1')))
     fig6.update_layout(template='plotly_white')
 
 
@@ -258,32 +258,52 @@ else:
     fig8 = go.Figure(layout = layout)
     fig8.add_trace(go.Scatter(x=sel_df['fecha'], y=sel_df['ruido(db)'],\
                             mode='lines', name='Ruido',
-                            line = dict(color = 'red')))
+                            line = dict(color = '#AFFC41')))
     fig8.update_layout(template='plotly_white')
 
     tab1.header('Punto de Recolección')
     tab1.map(data = sel_df, latitude = 'latitud', longitude = 'longitud')
+    tab1.subheader('Fuentes:')
+    tab1.write("Monitoreo de calidad de aire QAIRA - [Municipalidad de Miraflores] [link](https://www.datosabiertos.gob.pe/dataset/monitoreo-de-calidad-de-aire-qaira%C2%A0-municipalidad-de-miraflores)")
 
     tab2.header('Temperatura')
     tab2.plotly_chart(fig4, use_container_width = True)
+    tab2.subheader('Fuentes:')
+    tab2.write("Monitoreo de calidad de aire QAIRA - [Municipalidad de Miraflores] [link](https://www.datosabiertos.gob.pe/dataset/monitoreo-de-calidad-de-aire-qaira%C2%A0-municipalidad-de-miraflores)")
 
     tab3.header('Presión')
     tab3.plotly_chart(fig5, use_container_width = True)
+    tab3.subheader('Fuentes:')
+    tab3.write("Monitoreo de calidad de aire QAIRA - [Municipalidad de Miraflores] [link](https://www.datosabiertos.gob.pe/dataset/monitoreo-de-calidad-de-aire-qaira%C2%A0-municipalidad-de-miraflores)")
 
     tab4.header('Humedad')
     tab4.plotly_chart(fig6, use_container_width= True)
+    tab4.subheader('Fuentes:')
+    tab4.write("Monitoreo de calidad de aire QAIRA - [Municipalidad de Miraflores] [link](https://www.datosabiertos.gob.pe/dataset/monitoreo-de-calidad-de-aire-qaira%C2%A0-municipalidad-de-miraflores)")
 
-    tab5.header('uv')
+    tab5.header('UV')
     tab5.plotly_chart(fig7, use_container_width = True)
+    tab5.subheader('Fuentes:')
+    tab5.write("Monitoreo de calidad de aire QAIRA - [Municipalidad de Miraflores] [link](https://www.datosabiertos.gob.pe/dataset/monitoreo-de-calidad-de-aire-qaira%C2%A0-municipalidad-de-miraflores)")
 
     tab6.header('Ruido')
     tab6.plotly_chart(fig8, use_container_width= True)
+    tab6.subheader('Fuentes:')
+    tab6.write("Monitoreo de calidad de aire QAIRA - [Municipalidad de Miraflores] [link](https://www.datosabiertos.gob.pe/dataset/monitoreo-de-calidad-de-aire-qaira%C2%A0-municipalidad-de-miraflores)")
 
     tab7.header('Gases')
     tab7.plotly_chart(fig1, use_container_width = True)
     tab7.plotly_chart(fig2, use_container_width = True)
+    tab7.subheader('Fuentes:')
+    tab7.write("Monitoreo de calidad de aire QAIRA - [Municipalidad de Miraflores] [link](https://www.datosabiertos.gob.pe/dataset/monitoreo-de-calidad-de-aire-qaira%C2%A0-municipalidad-de-miraflores)")
+    tab7.write("H2S Hydrogen Sulfide Limits - Florida Health [link](https://www.floridahealth.gov/environmental-health/hazardous-waste-sites/_documents/h/h2sfaqs2016.pdf)")
+    tab7.write("Ambient (outdoor) air pollution Limits - WHO [link](https://www.who.int/news-room/fact-sheets/detail/ambient-(outdoor)-air-quality-and-health#:~:text=The%20WHO%20Global%20air%20quality,%2Dbased%20decision%2Dmaking%20process.)")
 
     tab8.header('Material Particulado')
     tab8.plotly_chart(fig3, use_container_width = True)
+    tab8.subheader('Fuentes:')
+    tab8.write("Monitoreo de calidad de aire QAIRA - [Municipalidad de Miraflores] [link](https://www.datosabiertos.gob.pe/dataset/monitoreo-de-calidad-de-aire-qaira%C2%A0-municipalidad-de-miraflores)")
+    tab8.write("Ambient (outdoor) air pollution Limits - WHO [link](https://www.who.int/news-room/fact-sheets/detail/ambient-(outdoor)-air-quality-and-health#:~:text=The%20WHO%20Global%20air%20quality,%2Dbased%20decision%2Dmaking%20process.)")
+
 
 
